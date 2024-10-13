@@ -16,7 +16,7 @@ def load_airlines(filename: str) -> Dict[str, str]:
     """Loads the airlines from the given file and returns a dictionary of airline codes and names.
 
     Example:
-        >>> load_airlines("airlines.dat")                    # doctest: +NORMALIZE_WHITESPACE
+        >>> load_airlines("../data/airlines.dat")                    # doctest: +NORMALIZE_WHITESPACE
         {'UA': 'United Air Lines Inc.',
         'AA': 'American Airlines Inc.',
         'US': 'US Airways Inc.',
@@ -49,7 +49,7 @@ def build_counters(filename: str, airlines: Dict[str, str]) -> Dict[str, int]:
 
 
     Example:
-        >>> build_counters("flights10.dat", {"AA": "American Airlines",  \
+        >>> build_counters("../data/flights10.dat", {"AA": "American Airlines",  \
                            "DL": "Delta Airlines", "UA": "United Airlines"})
         {'UA': 2, 'DL': 2}
 
@@ -93,8 +93,8 @@ def main(flights: str, airlines: str) -> None:
 # You do not need to modify this code.
 # to run the program using different type types of arguments, use the following commands:
 # python flight_counter.py
-# python flight_counter.py -f flights10.dat
-# python flight_counter.py --flights flights10.dat
+# python flight_counter.py -f ../data/flights10.dat
+# python flight_counter.py --flights ../data/flights10.dat
 # You can also type python flight_counter.py -h to see the help message.
 # these type of optional arguments are very common for command line programs
 if __name__ == "__main__":
@@ -103,13 +103,13 @@ if __name__ == "__main__":
         "-f",
         "--flights",
         help="The file containing the flight data.",
-        default="flights10.dat",
+        default="../data/flights10.dat",
     )
     parser.add_argument(
         "-a",
         "--airlines",
         help="The file containing the airline data.",
-        default="airlines.dat",
+        default="../data/airlines.dat",
     )
     args = parser.parse_args()
     main(args.flights, args.airlines)

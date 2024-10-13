@@ -14,7 +14,7 @@
     replace with your output here
     ```
 
-6. Output of running `python3 src/flight_counter.py -h`, and what it means in your own words. (Note: windows is python, and file location may vary based on where you are running it. The above assume linux and running from the homework home directory)
+6. Output of running `python3 flight_counter.py -h`, and what it means in your own words. (Note: windows is python, and file location may vary based on where you are running it. The above assume linux and running from the homework src directory)
 
     ```
     replace with your output here
