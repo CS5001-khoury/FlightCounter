@@ -172,6 +172,7 @@ form to fill out like codingbat, you need to copy your solution to a python file
    * Code has comments, well written, and easy to read
    * Report.md questions answered
    * Student answers questions in the README.md file
+   * Added Coding Practice Problem
 4. Exceeds  (MG)
    * Student provides additional tests in tests_flight_counter.py, , along with any test.dat files they made. 
    * Deeper Thinking question answered
