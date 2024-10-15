@@ -10,6 +10,7 @@ The following files have been provided for you.
 * [flights.dat](../data/flights.dat) - This is a very large file of flights from 2015. It 1,048,574 different flights! 
 * [flights10.dat](../data/flights10.dat) - This a much smaller file of flights from 2015. It contains 10 different flights. It was built by running the following command in linux/mac: `shuf -n 10 flights.dat > flights10.dat`. The `shuf` command randomly samples lines from a file. 
 * [flights100.dat](../data/flights100.dat) - This is another file you can use for testing counting your flights. 
+* [Tests](../tests/) - Contains default unit tests and files to help with testing. You will add to this directory. 
 
 
 ### flight_counter.py
@@ -62,33 +63,82 @@ Here are some specific constraints:
 * When loading the flight information, if the airline code is not in the airlines dictionary, you should skip that flight.
 * Flights always start with the two digit airline code. 
 * Both `load_airlines` and `build_counters` will be reading in from the provided .dat files, building the required dictionaries as the file is being read (don't try to load an entire file, and then build - because the 1,000,000+ lines would waste a lot of memory doing that).
-* You will need to use string format to get it.  The Airlines name should be *30* characters wide, and the number of flights should be *7* characters wide, with a space between them. The comma is often the hardest thing to make sure it is included. See below for some hints on how to do this.
+* You will need to use string format to for the print.  The Airlines name should be *30* characters wide, and the number of flights should be *7* characters wide, with a space between them. The comma is often the hardest thing to make sure it is included. See below for some hints on how to do this.
 
 
 ### test_flight_counter.py
-👉🏽 **TASK** - Make sure to write tests in a `test_flight_counter.py` file OR you an add examples (make sure you cover edge cases) to the docstrings in `flight_counter.py`, and run doctests with the -v option (see below).
+👉🏽 **TASK** - Run doctests with the -v option. You will copy this output into the report.md. However, you will also notice that doctests may not make as much sense for this project, as they are dependant on files (I still included them as examples).
 
-The first can be done by building very specific test files, and then making sure the built dictionaries match with what is expected. For example, an airline file that only has three lines. 
+When writing tests for files, it is important to build "unit tests" that work
+with designated input files and output files. That way whenever you run the tests,
+you can regenerate the actual results. This is a skill you will develop more
+in CS 5004, but we would like you to try it a bit with this assignment (it will also
+help with the final project giving you more options to test)
 
-You can make ".dat" files using a text editor/your IDE such as Pycharm or VS Code. They are just text files. 
+In [tests/test_flight_counter.py](../tests/test_flight_counter.py) we have
+provided a few example unit tests. Take a look through them, and
+make sure you understand what is going on. You will notice for most the tests
+we created a **SMALLER** file. This is to ensure that you can manually check to make
+sure the output is exactly what the test expects! Otherwise, it would be too large
+to use the full flights.dat and actually know if you are correct! 
 
-You can also run from the command line the tests built into the docstrings. For example, you can use the following command line to test all the docstrings in flight_counter.py:
+> [!IMPORTANT]
+> Generating test files that are smaller in nature, but easier to define
+> the expected results is up to the programmer doing the testing! It is good
+> to practice this skill, as it causes you to really think through expected
+> input (files) and output based on those files. 
 
-```console
-$ python3 -m doctest flight_counter.py
+
+:fire: **TASK**: You should write *at least* one additional unit test for `build_airlines` and `build_counters`. For each test, you should generate your own test files (add them to the tests folder). Make sure you follow the format of the test. As an example, we will talk through one of the provided tests below.
+
+```python
+   def test_build_airlines(self) -> None:  # notice method starts with the word test, and starts indented! 
+        """Test build airlines with a smaller airlines file""" # docstring
+        airlines = flight_counter.load_airlines("airlines_3.dat") # calls the function to test
+        self.assertEqual(   # assertsEquals is saying, compare these two values as equals 
+            airlines,       # actual value from the function
+            {               # expected / correct answer
+                "AS": "Alaska Airlines Inc.",
+                "US": "US Airways Inc.",
+                "UA": "United Air Lines Inc.",
+            },
+        )
 ```
 
-If everything runs correctly, you actually get 0 output. If there is an error, it will show you what the error is. If you want to force full details for output, you add the `-v` flag.
+The above test is a very specific format in that it starts with `test` (as does the file). The important line in there is `self.assertEqual(val1, val2)` this compares two values
+returning if they are equal. It can be any value, but should be the same type. In the case above since load_airlines returns a dictionary we make sure the 'expected' value is a dictionary. 
 
-```console
-$ python3 -m doctest -v flight_counter.py 
+Another way to word the above test would be.
+
+```python
+   def test_build_airlines(self) -> None:  
+        """Test build airlines with a smaller airlines file""" 
+        actual = flight_counter.load_airlines("airlines_3.dat") 
+        expected =  {               
+                "AS": "Alaska Airlines Inc.",
+                "US": "US Airways Inc.",
+                "UA": "United Air Lines Inc.",
+            }
+        self.assertEqual(actual, expected)
 ```
 
-Reminder: windows uses python, not python3. mac and linux uses python3.
+If the assert fails, it throws an exception with the unittest runner will report
+as an error. Detailed unit testing can look for exceptions, true/false statements,
+and more!  However, we just want you to start thinking about unit tests for this
+assignment so you need at least two, but we highly recommend more. 
 
-If you use doctest for testing over writing your own files, make sure to capture the output into a text file for your submission!
+> [!IMPORTANT]
+> For the two you write, remember to create test files! 
 
-In practice, both are done as testing files can be difficult using docstrings + doctests (as the file may not be there!), so one often uses both approaches depending on the situation. However, no need to go into that detail for this assignment.
+> [!NOTE]
+> You can also look at the larger program run. What that does is
+> run the program and captures the output into a string, that can then be
+> tested. You may consider using one of the smaller flights file to figure out 
+> a program run. 
+
+
+
+The autograder will have a variety of tests and files similar to the ones you create. I also encourage you to think about edge cases (e.g. what happens if files have spaces, or empty files, etc).
 
 ---
 
@@ -118,13 +168,14 @@ form to fill out like codingbat, you need to copy your solution to a python file
    * prints out flight info for a small data set, spacing is not counted, no commas
    * Passes standard pycodestyle check
    * Prints out flight info for a large dataset including commas correct
-3. Meets  (AG)
+3. Meets  (MG)
    * Code has comments, well written, and easy to read
    * Report.md questions answered
+   * Student answers questions in the README.md file
 4. Exceeds  (MG)
    * Student provides additional tests in tests_flight_counter.py, , along with any test.dat files they made. 
    * Deeper Thinking question answered
-   * Student answers questions in the README.md file
+   
 
 
 AG - Auto-graded  
@@ -141,6 +192,7 @@ For manually graded elements, we only guarantee time to submit for a regrade IF 
 * [Format String Syntax](https://docs.python.org/3/library/string.html#format-string-syntax)
 * [argparse](https://docs.python.org/3/library/argparse.html) - Python library for creating command line interfaces
 * [Kaggle - Explore: Flights](https://www.kaggle.com/code/miquar/explore-flights-csv-airports-csv-airlines-csv/notebook) - This is a notebook that uses the flights dataset to explore flights. It provided the basis for the .dat files we provided.
+* [Python Unit Testing Tutorial](https://realpython.com/python-unittest/) - Detailed tutorial on unit testing.
 
 
 ### String Formatting for Numbers
