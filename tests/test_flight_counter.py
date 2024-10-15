@@ -18,12 +18,12 @@ def lines_to_set(string: str) -> set:
 
 # Double check class name, remember unit tests likes it to start with Test
 class TestFlightCounter(unittest.TestCase):
-    def test_build_airlines(self) -> None:
-        """Test build airlines with a smaller airlines file"""
-        airlines = flight_counter.load_airlines("tests/airlines_3.dat")
-        self.assertEqual(
-            airlines,
-            {
+    def test_build_airlines(self) -> None:  # notice method starts with the word test, and starts indented! 
+        """Test build airlines with a smaller airlines file"""          # docstring
+        airlines = flight_counter.load_airlines("airlines_3.dat") # calls the function to test
+        self.assertEqual(   # assertsEquals is saying, compare these two values as equals 
+            airlines,       # actual value from the function
+            {               # expected / correct answer
                 "AS": "Alaska Airlines Inc.",
                 "US": "US Airways Inc.",
                 "UA": "United Air Lines Inc.",
@@ -32,7 +32,7 @@ class TestFlightCounter(unittest.TestCase):
 
     def test_build_airlines_2(self) -> None:
         """Test build airlines with a larger airlines file"""
-        airlines = flight_counter.load_airlines("tests/airlines.dat")
+        airlines = flight_counter.load_airlines("airlines.dat")
         self.assertEqual(
             airlines,
             {
@@ -56,8 +56,8 @@ class TestFlightCounter(unittest.TestCase):
 
     def test_build_counters(self) -> None:
         """Test build counters with a smaller airlines file"""
-        airlines = flight_counter.load_airlines("tests/airlines.dat")
-        counters = flight_counter.build_counters("tests/flights_4.dat", airlines)
+        airlines = flight_counter.load_airlines("airlines.dat")
+        counters = flight_counter.build_counters("flights_4.dat", airlines)
         self.assertEqual(counters, {"MQ": 1, "US": 1, "DL": 1, "WN": 1})
 
 
