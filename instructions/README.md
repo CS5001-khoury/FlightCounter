@@ -5,11 +5,11 @@ For this assignment you will explore reading in file data for *large* files, and
 ## Provided Files
 The following files have been provided for you.
 
-* [flight_counter.py](../flight_counter.py) - This is the main file you will be working on. It contains the functions you will be writing, along with already built docstrings. 
-* [airlines.dat](../airlines.dat) - This file contains 14 different airlines, in the format of CODE::NAME.
-* [flights.dat](../flights.dat) - This is a very large file of flights from 2015. It 1,048,574 different flights! 
-* [flights10.dat](../flights10.dat) - This a much smaller file of flights from 2015. It contains 10 different flights. It was built by running the following command in linux/mac: `shuf -n 10 flights.dat > flights10.dat`. The `shuf` command randomly samples lines from a file. 
-* [flights100.dat](../flights100.dat) - This is another file you can use for testing counting your flights. 
+* [flight_counter.py](../src/flight_counter.py) - This is the main file you will be working on. It contains the functions you will be writing, along with already built docstrings. 
+* [airlines.dat](../data/airlines.dat) - This file contains 14 different airlines, in the format of CODE::NAME.
+* [flights.dat](../data/flights.dat) - This is a very large file of flights from 2015. It 1,048,574 different flights! 
+* [flights10.dat](../data/flights10.dat) - This a much smaller file of flights from 2015. It contains 10 different flights. It was built by running the following command in linux/mac: `shuf -n 10 flights.dat > flights10.dat`. The `shuf` command randomly samples lines from a file. 
+* [flights100.dat](../data/flights100.dat) - This is another file you can use for testing counting your flights. 
 
 
 ### flight_counter.py
@@ -20,16 +20,17 @@ Take a moment to look through flight counter, and evaluate what the provided cod
 ```console
 $ python3 flight_counter.py -h
 ```
-(on windows, you can run `python flight_counter.py -h`). 
+(on windows, you can run `python flight_counter.py -h`). Note: this example assumes you are in the same directory (`src`) as your file.  
 
 
-👉🏽 **TASK** - Run the program with the -h argument, and copy the output into your README.md file. In your own words, explain what it is showing you.  
+:fire: **TASK** - Run the program with the -h argument, and copy the output into your Report.md file. In your own words, explain what it is showing you.  
 
-Further details: `argparse` is a python library that allows you to easily create command line interfaces. It is very useful for creating programs that can be run from the command line, and we wanted to provide an example of what it does in this assignment.  You do not have to know in full detail how to use `argparse`, but if you dive more into python development beyond this course it is a valuable tool to know.
+> [!NOTE]
+> `argparse` is a python library that allows you to easily create command line interfaces. It is very useful for creating programs that can be run from the command line, and we wanted to provide an example of what it does in this assignment.  You do not have to know in full detail how to use `argparse`, but if you dive more into python development beyond this course it is a valuable tool to know.
 
 ## Required Functions
 
-👉🏽 **TASK** - Implement the following functions in flight_counter.py.
+:fire: **TASK** - Implement the following functions in flight_counter.py.
 
 You will implement the following functions in flight_counter.py.
 * `load_airlines(filename)` - This function will load the airlines.dat file into a dictionary. The key will be the airline code, and the value will be the airline name.
@@ -93,15 +94,17 @@ In practice, both are done as testing files can be difficult using docstrings + 
 
 Start early, and ask questions!
 
+## Report.md and README.md
 
-## README.md
+:fire: **Task**: Answer the questions in the [Report.md](../Report.md) and [README.md](../README.md) files.
 
-👉🏽 **Task**: Answer the questions in the [README.md](../README.md) file. 
+As always you are free to ask about the questions in MS Teams, including clarifications on the code.
 
-Make sure to answer the questions in the [README.md](../README.md) file.
-
-As always you are free to ask about the questions in MS Teams, including clarifications on the code. 
-
+## Coding Practice
+Looking at the coding [practice problems](https://github.com/CS5001-khoury/Resources/blob/main/PracticeProblems.md) in the class resources, you should ideally do a few
+others on your own to get more practice coding.  However, you need to submit at least ONE (1)
+completed practice as its own python file (which means even if the coding practice had an online
+form to fill out like codingbat, you need to copy your solution to a python file).
 
 ## 📝 Grading Rubric
 
@@ -113,12 +116,14 @@ As always you are free to ask about the questions in MS Teams, including clarifi
    * Build counters works correctly with a small airlines file 
    * Build counters works correct with medium sized files
    * prints out flight info for a small data set, spacing is not counted, no commas
-3. Meets  (AG)
    * Passes standard pycodestyle check
    * Prints out flight info for a large dataset including commas correct
-4. Exceeds  (MG)
+3. Meets  (AG)
    * Code has comments, well written, and easy to read
-   * Student provides a test_flight_counter.py or evidence of testing (such as output from doctest), along with any test.dat files they made.
+   * Report.md questions answered
+4. Exceeds  (MG)
+   * Student provides additional tests in tests_flight_counter.py, , along with any test.dat files they made. 
+   * Deeper Thinking question answered
    * Student answers questions in the README.md file
 
 
