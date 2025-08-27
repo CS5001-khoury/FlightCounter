@@ -159,6 +159,77 @@ others on your own to get more practice coding.  However, you need to submit at 
 completed practice as its own python file (which means even if the coding practice had an online
 form to fill out like codingbat, you need to copy your solution to a python file).
 
+## 🤖 Use of LLMs
+You should **not** use LLMs for writing your code. This is about learning the process, and without learning the process you may find it actually more difficult to generate code with LLMs. This is because the prompts for LLMs need to be exact, or they will make faulty assumptions about the code you are trying to generate (often generating incorrect test cases!). 
+
+You are free to use LLMs to help you think of edge cases  **after** you have a working function. An example prompt could be:
+
+> Please evaluate the following function focusing on these specific areas:
+>
+> 1. **Code correctness**: Does the implementation match the docstring description?
+> 2. **Docstring completeness**: Are the parameters, return value, and examples clear and accurate?
+> 3. **Edge cases**: What boundary conditions or unusual inputs could cause issues?
+>
+> Note that for this function, I am specifically required to use recursion. 
+> 
+> For any edge cases you identify:
+> - Explain why they're problematic
+> - Show what would happen with specific input examples
+> - Suggest how to handle them (documentation or code changes)
+>
+> Focus your feedback on the most important issues first. Assume this is for a beginner programming course.
+>
+> [then paste in the single function you are looking at]
+
+For this one, we are also going to help you generate unit tests. Here is a sample prompt that can help with unit tests. Note with most LLMs, you can copy and drag the files into the prompt area. 
+
+**Unit Test Generation and Enhancement Prompt**
+> I have a Python file with functions that I need to test more thoroughly. I'm providing you with the original code file and an existing test file that may have some tests already written. I need you to analyze the current test coverage and create a comprehensive, improved test file.
+>
+> **Files I'm providing:** 
+> - **Main code file**: [filename.py] - Contains the functions that need testing
+> - **Current test file**: [test_filename.py] - May have some existing tests or be mostly empty
+> - **Data files** (if applicable): [data_file.dat] and [sample.dat] - Sample data that the functions might work with
+>
+> **What I need you to do:**
+>
+> 1. **Analyze the existing tests**: Review what's already covered and identify gaps in test coverage
+>
+> 2. **Create comprehensive unit tests** that include:
+>    - **Happy path tests**: Normal, expected inputs and outputs
+>    - **Edge case tests**: Empty inputs, boundary values, maximum/minimum values
+>    - **Error handling tests**: Invalid inputs, wrong data types, missing files
+>    - **Data validation tests**: If functions work with the provided data files, test various scenarios
+>    - **Integration tests**: If functions work together, test their interactions
+>
+> 3. **Follow testing best practices**:
+>    - Use descriptive test method names that explain what is being tested
+>    - Include clear assertions with helpful error messages
+>    - Set up proper test data and teardown if needed
+>    - Group related tests logically
+>    - Use appropriate the unittest testing frameworks
+>
+> **For each test you create, please:**
+> - Add a brief comment explaining what the test is checking
+> - Ensure tests are independent and can run in any order
+> - Make sure test data doesn't interfere between tests
+> - Include both positive and negative test cases
+>
+> **Output format:**
+> - Provide the complete, updated test file
+> - Include a brief summary of what new tests you added and why
+> - Point out any functions that might be difficult to test and suggest improvements
+> - Note any assumptions you made about expected behavior
+>
+> My goal is to have a robust test suite that gives me confidence in my code and helps me catch bugs early. Help me understand good testing practices through your examples.
+
+You may actually find using the LLM will be more work than just writing additional tests. However, it is worth looking at both approaches. 
+
+> [!CAUTION]
+> LLMs are notorious about having invalid tests. The code is right, but the expected
+> output is often wrong. You will want to validate all lines of code with your 
+> own understanding of the files!
+
 ## 📝 Grading Rubric
 
 1. Learning (AG)
