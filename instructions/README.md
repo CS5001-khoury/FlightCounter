@@ -66,9 +66,9 @@ Here are some specific constraints:
   * Example: **DL**1668 is for **Delta Airlines** flight number 1668
 * Both `load_airlines` and `build_counters` will be reading in from the provided .dat files, and building the required dictionaries *as the file is being read*.
 
-  > [!IMPORTANT]
-  >
-  > don't try to load the entire file first, and then build - because the 1,000,000+ lines would waste a lot of memory doing that
+> [!IMPORTANT]
+>
+> don't try to load the entire file first, and then build - because the 1,000,000+ lines would waste a lot of memory doing that
 * You will need to use string format to print the flight information. The Airlines name should be *30* characters wide, and the number of flights should be *7* characters wide, with a space between them. The comma is often the hardest thing to make sure it is included. See below for some hints on how to do this.
 
 ### test_flight_counter.py
